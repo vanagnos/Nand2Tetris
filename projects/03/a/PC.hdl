@@ -1,4 +1,4 @@
-// This file is part of www.nand2tetris.org
+// This file is part of wwwnand2tetris.org
 // and the book "The Elements of Computing Systems"
 // by Nisan and Schocken, MIT Press.
 // File name: projects/03/a/PC.hdl
@@ -11,10 +11,24 @@
  * else                    out[t+1] = out[t]
  */
 
+
 CHIP PC {
     IN in[16],load,inc,reset;
     OUT out[16];
 
     PARTS:
-    // Put your code here:
+    // incremenent
+    Inc16(in=reg, out=toincr);
+
+
+    Mux16(a=reg, b=toincr, sel=inc, out=incremented);
+    Mux16(a=incremented, b=in, sel=load, out=loaded);
+    Mux16(a=loaded, b=false, sel=reset, out=outt);
+
+
+    // load operation
+    Register(in=outt, load=true ,out=reg, out=out);
+
+
+
 }
