@@ -9,4 +9,44 @@
 // This program only needs to handle arguments that satisfy
 // R0 >= 0, R1 >= 0, and R0*R1 < 32768.
 
-// Put your code here.
+@R1
+D=M
+
+@i
+M=D
+
+@product
+M=0
+
+(LOOP)
+    @i
+    D=M
+    // if i is zero then end.
+    @END
+    D;JEQ
+
+
+    //product = product + R0
+    @R0
+    D=M
+
+    @product
+    M=D+M
+    // decrement i
+    @i
+    M=M-1
+
+    @LOOP
+    0;JMP
+
+(END)
+    @product
+    D=M
+
+// store result in R2
+    @R2
+    M=D
+
+    @END
+    0;JMP
+
