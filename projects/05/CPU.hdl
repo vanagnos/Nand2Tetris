@@ -49,7 +49,8 @@ CHIP CPU {
     Mux16(a=Aout, b=inM, sel=instruction[3], out=AorinM);
 
 
-    // addressM
+    // addressM. 
+    // edit: feeding output as input????
     Mux16(a=Aout, b=addressM, sel=writeM, out=outaddressM);
     
     // the a bit and six c bits (instrucion[3..9]) specify which function the ALU will compute
